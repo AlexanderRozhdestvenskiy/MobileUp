@@ -8,25 +8,23 @@
 import UIKit
 import WebKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, WKUIDelegate {
     
+    var webView: WKWebView!
     
-    @IBOutlet weak var webView: WKWebView!
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        view = webView
+    }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let myURL = URL(string: "https://www.apple.com") {
-            let request = URLRequest(url: myURL)
-            webView.load(request)
-        }
+        
+        let myURL = URL(string:"https://www.apple.com")
+        let myRequest = URLRequest(url: myURL!)
+        webView.load(myRequest)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        webView.stopLoading()
-    }
-
 }

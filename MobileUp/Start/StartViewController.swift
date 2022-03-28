@@ -21,5 +21,4 @@ class StartViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         present(LoginViewController(), animated: true)
     }
-    
 }
